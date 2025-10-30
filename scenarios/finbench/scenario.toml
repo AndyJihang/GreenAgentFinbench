@@ -1,0 +1,14 @@
+[green_agent]
+image = "agentify-finbench:latest"
+command = []
+env = { SERPAPI_KEY = "", TOOLS_HOST = "0.0.0.0", TOOLS_PORT = "7001", GREEN_HOST = "0.0.0.0", GREEN_PORT = "7002" }
+healthcheck_url = "http://127.0.0.1:7002/agent_card"
+
+[assessment]
+participant_url = "http://127.0.0.1:7003"  # platform UI will override
+tools_base_url  = "http://127.0.0.1:7001"
+tasks_path = "/app/data/tasks/sample_tasks.json"
+
+[artifacts]
+summary_filename = "summary.json"
+per_task_filename = "per_task.jsonl"

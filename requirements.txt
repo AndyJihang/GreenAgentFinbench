@@ -1,0 +1,8 @@
+fastapi==0.111.0
+uvicorn==0.30.3
+pydantic==2.8.2
+requests==2.32.3
+beautifulsoup4==4.12.3
+lxml>=5.2.2
+duckduckgo-search>=6.2.12,<9
+pandas==2.2.2

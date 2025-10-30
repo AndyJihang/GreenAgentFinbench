@@ -1,0 +1,93 @@
+[
+  {
+    "task_id": "demo-aapl-2023-revenue",
+    "category": "NumericalReasoning",
+    "question": "What was Apple's total revenue (net sales) in fiscal year 2023? Report in USD billions to one decimal. Provide the sentence used as evidence.",
+    "constraints": {
+      "allowed_tools": [
+        "http_fetch",
+        "html_parse",
+        "kv_put",
+        "kv_get",
+        "finance_calc_extract_first_billions"
+      ],
+      "max_steps": 20,
+      "time_budget_sec": 120
+    },
+    "evidence_policy": {
+      "allowed_domains": [
+        "127.0.0.1"
+      ],
+      "must_cite": true
+    },
+    "answer_contract": {
+      "final_prefix": "FINAL ANSWER:",
+      "require_sources_dict": true
+    },
+    "rubrics": [
+      {
+        "id": "r1",
+        "desc": "Numeric correctness, USD billions, tol \u00b10.5",
+        "weight": 0.6
+      },
+      {
+        "id": "r2",
+        "desc": "Cites evidence sentence and source URL",
+        "weight": 0.4
+      }
+    ],
+    "context_urls": [
+      "http://127.0.0.1:7001/static/aapl_10k_2023_excerpt.html"
+    ],
+    "expected": {
+      "type": "numeric",
+      "value": 383.285,
+      "tolerance": 0.5,
+      "units": "USD_billion"
+    }
+  },
+  {
+    "task_id": "demo-msft-fy24q4-beat",
+    "category": "EarningsBeatMiss",
+    "question": "Did Microsoft beat or miss EPS expectations in Q4 FY2024? Provide beat/miss and EPS figure.",
+    "constraints": {
+      "allowed_tools": [
+        "http_fetch",
+        "html_parse"
+      ],
+      "max_steps": 20,
+      "time_budget_sec": 120
+    },
+    "evidence_policy": {
+      "allowed_domains": [
+        "127.0.0.1"
+      ],
+      "must_cite": true
+    },
+    "answer_contract": {
+      "final_prefix": "FINAL ANSWER:",
+      "require_sources_dict": true
+    },
+    "rubrics": [
+      {
+        "id": "r1",
+        "desc": "Correctly identify Beat/Miss",
+        "weight": 0.5
+      },
+      {
+        "id": "r2",
+        "desc": "Provide EPS number and source URL",
+        "weight": 0.5
+      }
+    ],
+    "context_urls": [
+      "http://127.0.0.1:7001/static/msft_fy2024_q4_press_release.html"
+    ],
+    "expected": {
+      "type": "beat_miss",
+      "result": "Beat",
+      "eps": 2.95,
+      "consensus": 2.9
+    }
+  }
+]
